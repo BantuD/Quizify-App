@@ -6,15 +6,21 @@ const Quize = () => {
     const questionArray = database.category.javascript.data;
 
     const [selectedAnswers,setSelectedAnswers] = useState({});
-    const [showResults,setResults] = useState(false);
+    const [showResults,setResults] = useState({});
 
     const handleAnswersChange = (questionIndex,optionKey)=>{
         setSelectedAnswers(
             {
                 ...selectedAnswers,
                 [questionIndex]:optionKey
-            }
+            },
         )
+        setResults(
+            {
+            ...showResults,
+            [questionIndex]:true
+
+    })
     }
     return (
         <div>
@@ -30,11 +36,11 @@ const Quize = () => {
                             </li>
                         ))}
                     </ul>
-                    {showResults && (
-                        <p>
+                    {showResults[index] && (
+                        <p style={{marginLeft:"20px"}}>
                         {selectedAnswers[index] === arrayItemObj.correctAnswer
-                            ? "Correct Answer"
-                            : `invalid answer1 correct answer is: ${arrayItemObj.correctAnswer}`
+                            ? <span  style={{color:"green"}}>Correct Answer</span>
+                            : <span style={{color:"red"}}>invalid answer1 correct answer is: ${arrayItemObj.correctAnswer}</span>
                         }
                         </p>
                     )}
