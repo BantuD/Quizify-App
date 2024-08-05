@@ -46,7 +46,6 @@ const Quize = () => {
                     )}
                 </div>
             ))}
-            <button onClick={()=>{setResults(true)}}>Show Answers</button>
         </div>
     );
 };
